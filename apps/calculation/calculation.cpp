@@ -192,6 +192,9 @@ Calculation::DisplayOutput Calculation::displayOutput(Context * context) {
   } else if (strcmp(m_exactOutputText, Undefined::Name()) == 0 || strcmp(m_approximateOutputText, Unreal::Name()) == 0) {
     // If the approximate result is 'unreal' or the exact result is 'undef'
     m_displayOutput = DisplayOutput::ApproximateOnly;
+  } else if (strcmp(m_approximateOutputText, Undefined::Name()) == 0) {
+    // If the approximate is 'undef'
+    m_displayOutput = DisplayOutput::ExactOnly;
   } else if (input().recursivelyMatches(Expression::IsApproximate, *context) || exactOutput().recursivelyMatches(Expression::IsApproximate, *context)) {
     m_displayOutput = DisplayOutput::ExactAndApproximateToggle;
   } else {
