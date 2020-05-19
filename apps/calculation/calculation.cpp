@@ -248,7 +248,7 @@ Calculation::DisplayOutput Calculation::displayOutput(Context * context) {
   if (m_displayOutput != DisplayOutput::Unknown) {
     return m_displayOutput;
   }
-  if (shouldOnlyDisplayExactOutput()) {
+  if (shouldOnlyDisplayExactOutput() || (GlobalPreferences::sharedGlobalPreferences()->isInExamModeSymbolic() && strcmp(approximateOutputText(NumberOfSignificantDigits::UserDefined), Undefined::Name()) == 0)) {
     m_displayOutput = DisplayOutput::ExactOnly;
   } else if (
       /* If the exact and approximate outputs are equal (with the
